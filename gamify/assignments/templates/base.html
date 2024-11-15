@@ -38,7 +38,7 @@
         }
 
         .btn {
-            padding: 8px 20px;
+            padding: 15px 30px;
             border: none;
             border-radius: 5px;
             background-color: #ffd700;
@@ -106,8 +106,11 @@
             Congrats Abby, your WritingScholar award is now displayed on your profile :)
         </div>
         <div class="auth-buttons">
-            <button class="btn">LogIn</button>
-            <button class="btn">SignUp</button>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <button class="btn" name="LogIn">Log In</button>
+            </form>
+            <button class="btn">Sign Up</button>
         </div>
     </header>
 
