@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+
+        .content-container {
+            background-color: white;
+            width: 100%;
+            height: 100vh; 
+            background-image: linear-gradient(#7EC8E3 0.5px, transparent 0.5px), linear-gradient(to right, #7EC8E3 0.5px, transparent 0.5px);
+            background-size: 100% 30px, 30px 100%; 
+            background-position: top left;
+            background-repeat: repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .student,
+        .teacher {
+            font-size: 2.5em;
+            color: black;
+            margin: 20px;
+            margin-top: -415px;
+            position: absolute;
+        }
+
+        .student {
+            text-align: left;
+            margin-right: 300px;
+            transform: translateY(-50%);
+        }
+
+        .teacher {
+            text-align: right;
+            margin-left: 280px;  
+            transform: translateY(-50%);
+        }
+
+        .divider-vertical {
+            width: 1px; 
+            height: 100vh; 
+            background-color: red;
+            position: absolute;
+            left: 49.6%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+         .form-container {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            padding: 20px;
+            gap: 30px; 
+            margin-left: 100px; 
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        button {
+            background-color: #7EC8E3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #6cb0c5;
+        }
+
+        .error {
+            color: red;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        .quote-container {
+            background-color: #fef4a3;
+            padding: 20px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: black;
+            gap: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1 class="student">Student</h1>
+        <h1 class="teacher">Teacher</h1>
+        <div class="divider-vertical"></div>
+
+        <!-- Form container for Student and Teacher -->
+        <div class="form-container">
+            <!-- Student Form -->
+            <form method="POST" id="student-form">
+                {% csrf_token %}
+                <label for="student-username">Username</label>
+                <span style="font-size: 0.8em; color: gray;">(Must be at least 10 characters long)</span>
+                <input type="text" id="student-username" name="student-username" placeholder="Enter username" required>
+
+                <label for="student-password">Password</label>
+                <span style="font-size: 0.8em; color: gray;">(Must contain at least one uppercase, 15 characters long, and one symbol)</span>
+                <input type="password" id="student-password" name="student-password" placeholder="Enter password" required>
+
+                <label for="school-code">School Code</label>
+                <input list="school-codes" id="school-code" name="school-code" placeholder="Enter School Code" required>
+                <datalist id="school-codes">
+                    <option value="0001">
+                    <option value="0002">
+                    <option value="0003">
+                    <option value="0004">
+                </datalist>
+
+                <button type="submit">Sign Up</button>
+            </form>
+
+            <!-- Teacher Form -->
+            <form method="POST" id="teacher-form">
+                {% csrf_token %}
+                <label for="teacher-username">Username</label>
+                <span style="font-size: 0.8em; color: gray;">(Must be at least 10 characters long)</span>
+                <input type="text" id="teacher-username" name="teacher-username" placeholder="Enter username" required>
+
+                <label for="teacher-password">Password</label>
+                <span style="font-size: 0.8em; color: gray;">(Must contain at least one uppercase, 15 characters long, and one symbol)</span>
+                <input type="password" id="teacher-password" name="teacher-password" placeholder="Enter password" required>
+
+                <label for="school-name">School Name</label>
+                <input list="school-names" id="school-name" name="school-name" placeholder="Enter School Name" required>
+                <datalist id="school-names">
+                    <option value="Farragut Career Academy IB World School 0001">
+                    <option value="Lane Tech College Prep High School 0002">
+                    <option value="Whitney M. Young Magnet High School 0003">
+                    <option value="World Language High School 0004">
+                </datalist>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="quote-container">
+            <p>“Education is the passport to the future, for tomorrow belongs to those who prepare for it today.” - Malcolm X <span>🤓</span> </p>
+        </div>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+    <script>
+        document.getElementById("student-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            window.location.href = "/"; 
+        });
+
+        document.getElementById("teacher-form").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            window.location.href = "/"; 
+        });
+    </script>
+</body>
+</html>

@@ -110,7 +110,10 @@
                 {% csrf_token %}
                 <button class="btn" name="LogIn">Log In</button>
             </form>
-            <button class="btn">Sign Up</button>
+            <form method="POST" action="{% url 'sign' %}">
+                {% csrf_token %}
+                <button class="btn" name="SignUp">Sign Up</button>
+            </form>
         </div>
     </header>
 
