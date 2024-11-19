@@ -9,11 +9,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: "Merriweather", sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            background: linear-gradient(135deg, #ccc 0%, #f6a7b9 100%); 
             min-height: 100vh;
         }
 
@@ -25,11 +25,18 @@
         }
 
         .notification {
-            background-color: white;
+            background-color: #ddd;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 10px;
             margin-right: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .notification-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: grey;
+            margin-bottom: 5px;
         }
 
         .auth-buttons {
@@ -41,7 +48,7 @@
             padding: 15px 30px;
             border: none;
             border-radius: 5px;
-            background-color: #ffd700;
+            background-color: #fad0c4;
             cursor: pointer;
             font-weight: bold;
             transition: transform 0.2s;
@@ -57,38 +64,28 @@
         }
 
         .welcome-box {
-            background-color: #ff6b6b;
-            color: white;
+            background-color: #f6a7b9; 
+            color: #fff; 
             padding: 30px;
             border-radius: 10px;
             margin: 0 auto;
             max-width: 600px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 12px solid black; 
+            background: #bbb; 
+            text-align: center;
         }
 
-        .welcome-title {
-            font-size: 2.5em;
+        .welcome-title, .welcome-subtitle {
+            font-size: 3em; 
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 25px #fff, 0 0 5px #000;  
         }
 
         .welcome-subtitle {
-            font-size: 1.5em;
+            font-size: 1.6em;
             margin-bottom: 20px;
-        }
-
-        .mascots {
-            position: relative;
-            margin-top: 40px;
-        }
-
-        .robot-mascot {
-            width: 80px;
-            height: 80px;
-            background-color: white;
-            border-radius: 50%;
-            margin: 20px;
-            display: inline-block;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7), 0 0 15px #fff, 0 0 5px #000; 
         }
 
         .language-bubble {
@@ -98,12 +95,73 @@
             display: inline-block;
             margin: 20px;
         }
+
+        .floating-icon {
+            position: fixed;
+            bottom: 550px;
+            right: 440px;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            border: 2px solid black;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease; 
+        }
+
+        .floating-icon:hover {
+            transform: scale(1.5) rotate(15deg); 
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
+        }
+
+        .keyboard-container {
+            margin-top: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(12, 50px);
+            grid-gap: 10px;
+            background-color: #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid black;
+        }
+
+        .key {
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: 2px solid black;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+
+        .key:hover {
+            transform: scale(1.3); 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+            background-color: #f8f8f8; 
+        }
+
     </style>
 </head>
 <body>
     <header class="header">
         <div class="notification">
-            Congrats Abby, your WritingScholar award is now displayed on your profile :)
+            <div class="notification-title">Notification <span>💡</span> </div>
+            Congrats Abby, your Writing Scholar award is now displayed on your profile <span>🏆</span> <span>📚</span>
         </div>
         <div class="auth-buttons">
             <form method="POST" action="{% url 'login' %}">
@@ -123,11 +181,83 @@
             <h2 class="welcome-subtitle">Adventure Awaits: Explore and Learn!</h2>
         </div>
 
-        <div class="mascots">
-            <div class="robot-mascot"></div>
-            <div class="language-bubble">Spanish?</div>
-            <div class="robot-mascot"></div>
+        <div class="keyboard-container">
+            <div class="keyboard">
+                <div class="key" data-key="1">1</div>
+                <div class="key" data-key="2">2</div>
+                <div class="key" data-key="3">3</div>
+                <div class="key" data-key="4">4</div>
+                <div class="key" data-key="5">5</div>
+                <div class="key" data-key="6">6</div>
+                <div class="key" data-key="7">7</div>
+                <div class="key" data-key="8">8</div>
+                <div class="key" data-key="9">9</div>
+                <div class="key" data-key="0">0</div>
+                <div class="key" data-key="Q">Q</div>
+                <div class="key" data-key="W">W</div>
+                <div class="key" data-key="E">E</div>
+                <div class="key" data-key="R">R</div>
+                <div class="key" data-key="T">T</div>
+                <div class="key" data-key="Y">Y</div>
+                <div class="key" data-key="U">U</div>
+                <div class="key" data-key="I">I</div>
+                <div class="key" data-key="O">O</div>
+                <div class="key" data-key="P">P</div>
+                <div class="key" data-key="A">A</div>
+                <div class="key" data-key="S">S</div>
+                <div class="key" data-key="D">D</div>
+                <div class="key" data-key="F">F</div>
+                <div class="key" data-key="G">G</div>
+                <div class="key" data-key="H">H</div>
+                <div class="key" data-key="J">J</div>
+                <div class="key" data-key="K">K</div>
+                <div class="key" data-key="L">L</div>
+                <div class="key" data-key="Z">Z</div>
+                <div class="key" data-key="X">X</div>
+                <div class="key" data-key="C">C</div>
+                <div class="key" data-key="V">V</div>
+                <div class="key" data-key="B">B</div>
+                <div class="key" data-key="N">N</div>
+                <div class="key" data-key="M">M</div>
+            </div>
         </div>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let keys = document.querySelectorAll('.key');
+            let welcomeSubtitle = document.querySelector('.welcome-subtitle');
+
+            keys.forEach(key => {
+                key.addEventListener('click', () => {
+                    welcomeSubtitle.innerText += key.textContent;
+                });
+            });
+        });
+    </script>
+
+    <div class="floating-icon" id="floating-icon">
+        🤖
+    </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let facts = [
+                "The human brain has more connections than the stars in the Milky Way!", 
+                "Learning is fun when it's interactive!", 
+                "Keep pushing your brain to grow!"
+            ];
+            
+            let factDisplay = document.querySelector('.welcome-subtitle');
+    
+            if (factDisplay) { 
+                setInterval(() => {
+                    let randomFact = facts[Math.floor(Math.random() * facts.length)];
+                    factDisplay.textContent = randomFact;
+                }, 4000); 
+            }
+        });
+    </script>
 </body>
 </html>
