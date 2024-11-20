@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'assignments',
     'user_login',
     'user_sign_up',
+    'leaderboard',
 ]
 
 MIDDLEWARE = [

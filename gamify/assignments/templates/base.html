@@ -239,7 +239,15 @@
     <div class="floating-icon" id="floating-icon">
         🤖
     </div>
-    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const floatingIcon = document.getElementById('floating-icon');
+            floatingIcon.addEventListener('click', () => {
+                alert('How long is the robot alphabet? There are just two numbers: 0 and 1!');
+            });
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

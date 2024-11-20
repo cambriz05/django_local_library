@@ -6,6 +6,9 @@ from django.contrib.auth import login, authenticate
 def home(request):
     return render(request, "home.html")
 
+def leaderboard_view(request):
+    return render(request, "leaderboard.html")
+
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -25,3 +28,4 @@ def login_view(request):
         form = AuthenticationForm()  # If GET request, display the login form
 
     return render(request, "{% url 'login' %}.html", {'form': form})
+    #return render(request, "{% url 'leaderboard' %}.html", {'form': form})

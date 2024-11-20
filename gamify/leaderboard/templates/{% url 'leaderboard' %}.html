@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+
+        .content-container {
+            background-color: white;
+            width: 100%;
+            height: 100vh; 
+            background-image: linear-gradient(#7EC8E3 0.5px, transparent 0.5px), linear-gradient(to right, #7EC8E3 0.5px, transparent 0.5px);
+            background-size: 100% 30px, 30px 100%; 
+            background-position: top left;
+            background-repeat: repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .leaderboard-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 35px;
+        }
+
+        .scrollable-list {
+            width: 90%;
+            max-height: 100%;
+            overflow-y: auto;
+            border: 2px solid #7EC8E3;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 9px;
+        }
+
+        .scrollable-list ul {
+            list-style-type: none;
+            padding: 10px;
+        }
+
+        .scrollable-list li {
+            padding: 10px;
+            border-bottom: 1px solid #DDD;
+            font-size: 1.2rem; 
+        }
+
+        .scrollable-list li:last-child {
+            border-bottom: none;
+        }
+
+        .back-to-profile {
+            background-color: #7EC8E3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 28px;
+        }
+
+        .back-to-profile:hover {
+            background-color: #56a1c1;
+        }
+
+        .highlighted {
+            background-color: #FFD700; 
+            color: #ffffff; 
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 5px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8); 
+        }
+        </style>
+    </head>
+    <body>
+    <div class="content-container">
+        <h1 class="leaderboard-title">Leaderboard</h1>
+
+        <div class="scrollable-list">
+            <ul>
+                <li>1. John Doe</li>
+                <li>2. Jane Smith</li>
+                <li>3. Alex Johnson</li>
+                <li>4. Emily Davis</li>
+                <li>5. Michael Brown</li>
+                <li>6. Sarah Wilson</li>
+                <li>7. Chris Evans</li>
+                <li>8. Laura Taylor</li>
+                <li>9. Robert King</li>
+                <li>10. Anna Scott</li>
+                <li>11. Cindy Ambriz</li>
+                <li>12. Anas Hussain</li>
+                <li>13. Iron Man</li>
+                <li class="highlighted">14. Popeyes</li>
+                <li>15. Hulk</li>
+                <li>16. Captain Underpants</li>
+                <li>17. Snow White</li>
+            </ul>
+        </div>
+        <a href="{% url 'home' %}">
+            <button class="back-to-profile">Back to Profile</button>
+        </a>
+    </div>
+</body>
+</html>
