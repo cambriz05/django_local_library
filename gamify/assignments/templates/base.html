@@ -17,6 +17,16 @@
             min-height: 100vh;
         }
 
+        .content-container {
+            background-color: white;
+            width: 100%;
+            height: 100vh; 
+            background-image: linear-gradient(#7EC8E3 0.5px, transparent 0.5px), linear-gradient(to right, #7EC8E3 0.5px, transparent 0.5px);
+            background-size: 100% 30px, 30px 100%; 
+            background-position: top left;
+            background-repeat: repeat;
+        }
+
         .header {
             display: flex;
             justify-content: space-between;
@@ -30,6 +40,15 @@
             border-radius: 10px;
             margin-right: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid black;
+            opacity: 0; 
+            transform: translateY(-20px); 
+            transition: opacity 0.9s ease, transform 0.9s ease; /* Smooth transition */
+        }
+
+        .notification.show {
+            opacity: 1; 
+            transform: translateY(0); 
         }
 
         .notification-title {
@@ -48,10 +67,11 @@
             padding: 15px 30px;
             border: none;
             border-radius: 5px;
-            background-color: #fad0c4;
+            background-color: #FAF3E0;
             cursor: pointer;
             font-weight: bold;
             transition: transform 0.2s;
+            border: 1px solid black;
         }
 
         .btn:hover {
@@ -113,7 +133,7 @@
         }
 
         .floating-icon:hover {
-            transform: scale(1.5) rotate(15deg); 
+            transform: scale(1) rotate(10deg); 
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
         }
 
@@ -155,9 +175,43 @@
             background-color: #f8f8f8; 
         }
 
+        .dialog-bubble {
+            position: absolute;
+            bottom: 100%; 
+            right: 0; 
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ccc;
+            font-size: 0.9em;
+            width: 200px;
+            display: none; 
+            z-index: 10;
+            text-align: center;
+            font-family: "Merriweather", sans-serif;
+            font-size: medium;
+            border: 1px solid black;
+        }
+
+        .dialog-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -8px; 
+            right: 10%;
+            transform: translateX(50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white; 
+            border: 2px solid black;
+        }
+
     </style>
 </head>
 <body>
+    <div class="content-container">
     <header class="header">
         <div class="notification">
             <div class="notification-title">Notification <span>💡</span> </div>
@@ -222,6 +276,14 @@
             </div>
         </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const notification = document.querySelector('.notification');
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 900); 
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -238,13 +300,28 @@
 
     <div class="floating-icon" id="floating-icon">
         🤖
+        <div class="dialog-bubble" id="dialog-bubble">
+            How long is the robot alphabet?.... There are just two numbers: 0 and 1! <span>🤭</span>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const floatingIcon = document.getElementById('floating-icon');
+            const dialogBubble = document.getElementById('dialog-bubble');
+
             floatingIcon.addEventListener('click', () => {
-                alert('How long is the robot alphabet? There are just two numbers: 0 and 1!');
+                if (dialogBubble.style.display === 'none' || dialogBubble.style.display === '') {
+                    dialogBubble.style.display = 'block';
+                } else {
+                    dialogBubble.style.display = 'none';
+                }
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!floatingIcon.contains(event.target)) {
+                    dialogBubble.style.display = 'none';
+                }
             });
         });
     </script>
