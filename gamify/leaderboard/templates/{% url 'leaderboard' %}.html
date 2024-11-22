@@ -76,10 +76,12 @@
             cursor: pointer;
             margin-top: 20px;
             margin-right: 28px;
+            border: 2px solid black;
         }
 
         .back-to-profile:hover {
             background-color: #56a1c1;
+            transform: translateY(-5px);
         }
 
         .highlighted {
@@ -89,12 +91,24 @@
             border-radius: 5px;
             padding: 5px;
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.8); 
+            opacity: 0; /* Start hidden */
+            animation: fadeIn 5s forwards; /* Apply fade-in animation */
         }
-        </style>
-    </head>
-    <body>
+
+        /* Keyframes for fade-in animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 10;
+            }
+        }
+    </style>
+</head>
+<body>
     <div class="content-container">
-        <h1 class="leaderboard-title">Leaderboard</h1>
+        <h1 class="leaderboard-title">Leaderboard <span>🏅</span></h1>
 
         <div class="scrollable-list">
             <ul>
@@ -111,13 +125,13 @@
                 <li>11. Cindy Ambriz</li>
                 <li>12. Anas Hussain</li>
                 <li>13. Iron Man</li>
-                <li class="highlighted">14. Popeyes</li>
+                <li class="highlighted">14. Popeyes <span>🪩</span></li>
                 <li>15. Hulk</li>
                 <li>16. Captain Underpants</li>
                 <li>17. Snow White</li>
             </ul>
         </div>
-        <a href="{% url 'home' %}">
+        <a href="{% url 'user_profile' %}">
             <button class="back-to-profile">Back to Profile</button>
         </a>
     </div>

@@ -7,3 +7,6 @@ def home(request):
 def dashboard_view(request):
     return render(request, "{% url 'dashboard' %}.html")
 
+def user_profile_view(request):
+    return render(request, "{% url 'user_profile' %}.html")
+
