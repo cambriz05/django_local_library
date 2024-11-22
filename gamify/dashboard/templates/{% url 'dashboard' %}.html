@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+
+        .content-container {
+            background-color: white;
+            width: 100%;
+            height: 100vh; 
+            background-image: linear-gradient(#7EC8E3 0.5px, transparent 0.5px), linear-gradient(to right, #7EC8E3 0.5px, transparent 0.5px);
+            background-size: 100% 30px, 30px 100%; 
+            background-position: top left;
+            background-repeat: repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .dashboard-title {
+            text-align: left; 
+            font-size: 2rem;
+            margin-top: 35px;
+            margin-left: 8px; 
+        }
+
+        .progress-section {
+            margin-top: 20px;
+            padding: 20px; 
+            width: 55.2%; 
+            height: 190px; 
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start; 
+            border: 2px solid black;
+            margin-left: 8px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .progress-container {
+            position: relative; 
+            width: 90%; 
+            background-color: #bbb;
+            border-radius: 9px;
+            height: 40px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px; 
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 30%; 
+            background-color: #7EC8E3;
+            border-radius: 9px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .progress-label {
+            position: absolute; 
+            top: -30px; 
+            left: 8.5%; 
+            transform: translateX(-50%); 
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .weekly-label {
+            position: absolute; 
+            top: 55px; 
+            left: 8%;  
+            transform: translateX(-50%); 
+            font-size: 17px;
+            color: #333;
+        }
+
+        .percentage-label {
+            margin-top: 40px;
+            font-size: 17px;
+            color: #333;
+        }
+
+        .report-label {
+            position: absolute; 
+            top: 40px; 
+            left: 8.5%; 
+            transform: translateX(-50%); 
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .awards-section {
+            margin-top: 20px;
+            padding: 20px; 
+            width: 55.2%; 
+            height: auto; 
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start; 
+            border: 2px solid black;
+            margin-left: 8px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px; 
+            width: 100%;
+        }
+
+        .award-item {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .award-title {
+            font-weight: bold;
+            color: #3A8FBF;
+        }
+
+        .award-description {
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .award-date {
+            margin-top: 10px;
+            color: #888;
+            font-style: italic;
+        }
+
+        .tasks-section {
+            width: 30.6%;
+            margin-top: -450px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid black;
+            margin-left: 850px;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-item {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-button {
+            position: fixed;
+            bottom: 182.5px;
+            right: 465px;
+            background-color: #7EC8E3;
+            color: white;
+            border: none;
+            padding: 19.6px 35.5px; 
+            font-size: 1.2rem;   
+            border-radius: 5%;
+            cursor: pointer;
+        }
+
+        .profile-button:hover {
+            background-color: #56a1c1;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1 class="dashboard-title">Dashboard</h1>
+
+         <!-- Progress Section for Progress-->
+        <div class="progress-section">
+            <div class="progress-container">
+                <span class="progress-label">Your Progress</span>
+                <div class="progress-bar"></div>
+                <span class="weekly-label">Weekly Target:</span>
+            </div>
+            <div class="percentage-label">
+                Current: <span id="current-percentage">30%</span> | Updated: <span id="updated-percentage">0%</span> | Total: <span id="total-percentage">30%</span>
+            </div>
+        </div>
+     <!-- Section for Recent Awards -->
+        <div class="awards-section">
+            <h2>Recent Awards</h2>
+            <div class="awards-grid" id="awards-list">
+                <!-- Awards will be dynamically added here -->
+                <div class="award-item">
+                    <div class="award-title">Math Whiz Badge</div>
+                    <div class="award-description">Earned for completing Algebra Quiz #2</div>
+                    <div class="award-date">Awarded on: 2024-11-20</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-title">Quiz Master Badge</div>
+                    <div class="award-description">Earned for completing Geometry Quiz</div>
+                    <div class="award-date">Awarded on: 2024-11-18</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-title">Top Scorer Award</div>
+                    <div class="award-description">Highest score in the weekly challenge</div>
+                    <div class="award-date">Awarded on: 2024-11-15</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-title">Perfect Attendance</div>
+                    <div class="award-description">For attending all classes this month</div>
+                    <div class="award-date">Awarded on: 2024-11-10</div>
+                </div>
+            </div>
+        </div>
+         <!-- Available Tasks-->
+         <div class="tasks-section">
+            <h2>Available Tasks</h2>
+            <ul class="task-list">
+                <li class="task-item">Complete Algebra Quiz #3</li>
+                <li class="task-item">Finish Geometry Homework</li>
+                <li class="task-item">Review Calculus Notes</li>
+                <li class="task-item">Complete Physics Assignment</li>
+            </ul>
+        </div>
+        <a href="{% url 'home' %}">
+            <button class="profile-button">Go to Profile</button>
+        </a>
+    </div>
+
+    <script>
+        // Sample recent awards data (you could fetch this from an API or server)
+        const awards = [
+            { title: "Math Whiz Badge", description: "Earned for completing Algebra Quiz #2", date: "2024-11-20" },
+            { title: "Quiz Master Badge", description: "Earned for completing Geometry Quiz", date: "2024-11-18" },
+            { title: "Top Scorer Award", description: "Highest score in the weekly challenge", date: "2024-11-15" },
+            { title: "Perfect Attendance", description: "For attending all classes this month", date: "2024-11-10" }
+        ];
+
+        // Function to render awards in the HTML
+        function displayAwards() {
+            const awardsList = document.getElementById('awards-list');
+            awardsList.innerHTML = ''; // Clear any previous list
+
+            awards.forEach(award => {
+                const awardDiv = document.createElement('div');
+                awardDiv.classList.add('award-item');
+
+                awardDiv.innerHTML = `
+                    <div class="award-title">${award.title}</div>
+                    <div class="award-description">${award.description}</div>
+                    <div class="award-date">Awarded on: ${award.date}</div>
+                `;
+
+                awardsList.appendChild(awardDiv);
+            });
+        }
+
+        // Call the function to display awards when the page is loaded
+        document.addEventListener("DOMContentLoaded", displayAwards);
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const progressBar = document.querySelector('.progress-bar');
+            const currentPercentageLabel = document.getElementById('current-percentage');
+            const updatedPercentageLabel = document.getElementById('updated-percentage');
+            const totalPercentageLabel = document.getElementById('total-percentage');
+    
+            // Set initial progress bar percentage (starting value)
+            let currentPercentage = 30; // Set initial value for Current Percentage
+            progressBar.style.width = `${currentPercentage}%`;
+    
+            // Update the current percentage on load
+            currentPercentageLabel.textContent = `${currentPercentage}%`;
+    
+            // Simulate progress update
+            setTimeout(() => {
+                const updateValue = 30; // Value by which to update the progress
+                const updatedPercentage = currentPercentage + updateValue;
+    
+                // Update the progress bar and labels
+                progressBar.style.width = `${updatedPercentage}%`;
+                updatedPercentageLabel.textContent = `${updateValue}%`;
+    
+                // Update the total percentage
+                totalPercentageLabel.textContent = `${updatedPercentage}%`;
+    
+                // Reflect the new "current" percentage for future calculations
+                currentPercentage = updatedPercentage;
+            }, 1000); 
+        });
+    </script>
+</body>
+</html>

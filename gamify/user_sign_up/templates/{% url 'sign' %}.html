@@ -189,12 +189,12 @@
     <script>
         document.getElementById("student-form").addEventListener("submit", function(event) {
             event.preventDefault();
-            window.location.href = "/"; 
+            window.location.href = "{% url 'dashboard' %}"; 
         });
 
         document.getElementById("teacher-form").addEventListener("submit", function(event) {
             event.preventDefault(); 
-            window.location.href = "/"; 
+            window.location.href = "{% url 'dashboard' %}"; 
         });
     </script>
 </body>

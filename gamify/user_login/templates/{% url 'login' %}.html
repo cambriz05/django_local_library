@@ -92,6 +92,11 @@
             font-size: 1.2em;
         }
 
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
         button {
             background-color: #7EC8E3;
             color: white;
@@ -137,11 +142,11 @@
             <form method="POST" id="student-form">
                 {% csrf_token %}
                 <label for="student-username">Username</label>
-                <input type="text" id="student-username" name="student-username" placeholder="Enter username" required>
-
+                <input type="text" id="student-username" name="username" placeholder="Enter username" required>
+            
                 <label for="student-password">Password</label>
-                <input type="password" id="student-password" name="student-password" placeholder="Enter password" required>
-
+                <input type="password" id="student-password" name="password" placeholder="Enter password" required>
+            
                 <button type="submit">Log In</button>
             </form>
 
@@ -149,11 +154,11 @@
             <form method="POST" id="teacher-form">
                 {% csrf_token %}
                 <label for="teacher-username">Username</label>
-                <input type="text" id="teacher-username" name="teacher-username" placeholder="Enter username" required>
-
+                <input type="text" id="teacher-username" name="username" placeholder="Enter username" required>
+            
                 <label for="teacher-password">Password</label>
-                <input type="password" id="teacher-password" name="teacher-password" placeholder="Enter password" required>
-
+                <input type="password" id="teacher-password" name="password" placeholder="Enter password" required>
+            
                 <button type="submit">Log In</button>
             </form>
         </div>
@@ -166,15 +171,16 @@
             <p class="error">{{ error }}</p>
         {% endif %}
     </div>
+
     <script>
         document.getElementById("student-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the form from submitting
-            window.location.href = "/"; // Redirect to the home page (root URL)
+            event.preventDefault(); 
+            window.location.href = "{% url 'dashboard' %}";
         });
 
         document.getElementById("teacher-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the form from submitting
-            window.location.href = "/"; // Redirect to the home page (root URL)
+            event.preventDefault(); 
+            window.location.href = "{% url 'dashboard' %}";
         });
     </script>
 </body>
